@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_24_153941) do
+ActiveRecord::Schema.define(version: 2020_08_24_175320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "investor_id", null: false
+    t.bigint "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["investor_id"], name: "index_bookmarks_on_investor_id"
+    t.index ["project_id"], name: "index_bookmarks_on_project_id"
+  end
+
+  create_table "fundings", force: :cascade do |t|
+    t.integer "funding_amount"
+    t.integer "funding_shares"
+    t.bigint "project_id", null: false
+    t.bigint "investor_id", null: false
+    t.boolean "accepted"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["investor_id"], name: "index_fundings_on_investor_id"
+    t.index ["project_id"], name: "index_fundings_on_project_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.integer "total_funding"
+    t.integer "total_share"
+    t.string "status"
+    t.string "category"
+    t.bigint "owner_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_projects_on_owner_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name", null: false
@@ -31,4 +64,9 @@ ActiveRecord::Schema.define(version: 2020_08_24_153941) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookmarks", "projects"
+  add_foreign_key "bookmarks", "users", column: "investor_id"
+  add_foreign_key "fundings", "projects"
+  add_foreign_key "fundings", "users", column: "investor_id"
+  add_foreign_key "projects", "users", column: "owner_id"
 end
