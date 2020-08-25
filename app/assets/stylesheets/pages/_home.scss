@@ -1,1 +1,72 @@
 // Specific CSS for your home-page
+
+.banner-landing-1 {
+  width: 100%;
+  background-size: cover;
+  height: 100vh;
+  background-position: center center;
+  padding: 0;
+}
+
+.slogan-banner-1 {
+  color: white;
+  opacity: 1;
+  font-size: 31px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  padding-left: 250px;
+  padding-top: 250px;
+  max-width: 750px;
+  font-size: 42px;
+}
+
+.text-banner-1 {
+  color: white;
+  font-weight: lighter;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+  max-width: 650px;
+  padding-left: 250px;
+  padding-top: 15px;
+  font-size: 24px;
+}
+
+.btn-landing-1 {
+  width: 200px;
+  margin-left: 250px;
+  margin-top: 20px;
+}
+
+.btn-landing-2 {
+  width: 200px;
+}
+
+.gap-150 {
+  width: 100%;
+  height: 150px;
+}
+
+.banner-landing-2 {
+  width: 100%;
+  background-size: cover;
+  height: 470px;
+  background-position: center center;
+}
+
+#text-wrapper-banner-2 {
+  padding-left: 700px;
+  padding-top: 200px;
+  max-width: 1200px;
+}
+
+.slogan-banner-2 {
+  color: white;
+  opacity: 1;
+  font-size: 31px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+.text-banner-2 {
+  color: white;
+  font-weight: lighter;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+  padding-top: 15px;
+}
