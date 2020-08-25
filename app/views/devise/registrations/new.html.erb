@@ -1,6 +1,4 @@
 <h2>Sign up</h2>
-<% devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :username, :role]) %>
-
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= f.error_notification %>
@@ -21,7 +19,7 @@
      <%= f.input :role,
                 required: true,
                 autofocus: true,
-                collection: ["Owner", "Investor"] %>
+                collection: ["owner", "investor"] %>
     <%= f.input :email,
                 required: true,
                 autofocus: true,
