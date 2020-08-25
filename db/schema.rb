@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_08_24_175320) do
     t.integer "funding_shares"
     t.bigint "project_id", null: false
     t.bigint "investor_id", null: false
-    t.boolean "accepted"
+    t.boolean "accepted?"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["investor_id"], name: "index_fundings_on_investor_id"
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(version: 2020_08_24_175320) do
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.integer "total_funding"
-    t.integer "total_share"
-    t.string "status"
+    t.integer "total_shares"
+    t.boolean "open?"
     t.string "category"
     t.bigint "owner_id", null: false
     t.datetime "created_at", precision: 6, null: false
