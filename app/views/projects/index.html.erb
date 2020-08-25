@@ -1,0 +1,16 @@
+<h1>Project List</h1>
+
+<ul>
+  <% @projects.each do |project|%>
+    <li> <!-- style="list-style-type: none" -->
+      Project: <%= link_to project.name, project_path(project) %> (id: <%= project.id %>)<br>
+      Full name: <%= project.owner[:first_name] + " " + project.owner[:last_name] %><br>
+      Username: <%= project.owner[:username] %><br>
+      Role: <%= project.owner[:role] %><br>
+      Total funding: <%= project.total_funding %><br>
+      Total shares: <%= project.total_shares %><br>
+      Category: <%= project.category %>
+      <hr>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,8 @@
+<h1><%= @project.name %> (id: <%= @project.id %>)</h1>
+
+  Full name: <%= @project.owner[:first_name] + " " + @project.owner[:last_name] %><br>
+  Username: <%= @project.owner[:username] %><br>
+  Role: <%= @project.owner[:role] %><br>
+  Total funding: <%= @project.total_funding %><br>
+  Total shares: <%= @project.total_shares %><br>
+  Category: <%= @project.category %>
