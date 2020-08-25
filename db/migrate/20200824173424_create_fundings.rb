@@ -5,7 +5,7 @@ class CreateFundings < ActiveRecord::Migration[6.0]
       t.integer :funding_shares
       t.references :project, null: false, foreign_key: true
       t.references :investor, null: false, foreign_key: { to_table: :users }
-      t.boolean :accepted
+      t.boolean :accepted?
 
       t.timestamps
     end
