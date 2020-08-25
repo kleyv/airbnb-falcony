@@ -1,19 +1,16 @@
-<h1><strong>Project List</strong></h1>
+<h1>Project List</h1>
 
-<ul style="list-style-type: none">
-
+<ul>
   <% @projects.each do |project|%>
-	<li><%= link_to project.name, project_path(project) %>
-      <% if current_user.projects_as_owner.include?(project) %>
-		<%= link_to project_path(project), method: :delete, data: { confirm: "Delete your project?"} do %>
-		<i class="fas fa-trash-alt"></i>
-		<%= link_to project_path(project), method: :update, data: { confirm: "Update your project?"} do %>
-		<i class="fas fa-edit"></i>
-		<% end %>
-	</li>		 	
+    <li> <!-- style="list-style-type: none" -->
+      Project: <%= link_to project.name, project_path(project) %> (id: <%= project.id %>)<br>
+      Full name: <%= project.owner[:first_name] + " " + project.owner[:last_name] %><br>
+      Username: <%= project.owner[:username] %><br>
+      Role: <%= project.owner[:role] %><br>
+      Total funding: <%= project.total_funding %><br>
+      Total shares: <%= project.total_shares %><br>
+      Category: <%= project.category %>
+      <hr>
+    </li>
   <% end %>
-
-<li><strong><%= link_to "➕ Add a New Project", new_project_path %></strong></li>
-<li><strong><%= link_to "➕ Fund a Project", new_project_path %></strong></li>
-
 </ul>
