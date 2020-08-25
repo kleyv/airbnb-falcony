@@ -3,7 +3,7 @@ class Project < ApplicationRecord
   has_many :fundings, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  validates :name, :category, :total_funding, :total_share, :owner_id, presence: true
+  validates :name, :category, :total_funding, :total_shares, :owner_id, presence: true
   validates :name, uniqueness: true
 end
 
