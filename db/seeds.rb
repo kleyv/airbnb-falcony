@@ -31,7 +31,7 @@ puts 'Generating investors'
 end
 puts 'Investors done!'
 
-# Add 55 owners
+# Add 15 owners
 puts 'Generating owners...'
 15.times do
   first_name = Faker::Name.first_name
@@ -49,7 +49,7 @@ puts 'Generating owners...'
 end
 puts 'Owners done!'
 
-# Add 5 projects
+# Add several projects for each owner
 puts 'Generating projects...'
 User.where(role: 'owner').each do
   rand(1..4).times do
@@ -65,7 +65,7 @@ User.where(role: 'owner').each do
 end
 puts 'Projects done!'
 
-# Add 5 fundings
+# Add several fundings for each investor
 puts 'Generating fundings...'
 User.where(role: 'investor').each do |investor|
   rounds = rand(1..Project.count)
@@ -82,7 +82,7 @@ User.where(role: 'investor').each do |investor|
 end
 puts 'Fundings done!'
 
-# Add 5 bookmarks
+# Add several bookmarks for each investor
 puts 'Generating bookmarks...'
 User.where(role: 'investor').each do |investor|
   rounds = rand(1..Project.count)
