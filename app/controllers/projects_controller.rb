@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
-  before_action :set_project, only: [:show, :edit]
+  before_action :set_project, only: [:show, :edit, :update]
 
   def index
     @projects = Project.all
@@ -33,9 +33,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project.name = params[:name]
-    @project.total_funding = params[:total_funding]
-    @project.category = params[:category]
+    @project.update(project_params)
     redirect_to project_path(@project)
   end
 
