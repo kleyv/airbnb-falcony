@@ -12,7 +12,7 @@ require 'faker'
 User.destroy_all
 
 
-# Add 10 users
+# Add 20 users
 # Add 5 investors
 puts 'Generating investors'
 5.times do
@@ -31,7 +31,7 @@ puts 'Generating investors'
 end
 puts 'Investors done!'
 
-# Add 5 owners
+# Add 55 owners
 puts 'Generating owners...'
 15.times do
   first_name = Faker::Name.first_name
@@ -68,7 +68,7 @@ puts 'Projects done!'
 # Add 5 fundings
 puts 'Generating fundings...'
 User.where(role: 'investor').each do |investor|
-  rounds = (1..Project.count).to_a.sample
+  rounds = rand(1..Project.count)
   for i in (1..rounds).to_a do
     Funding.create!(
       funding_amount: (1..10_000).to_a.sample,
@@ -85,7 +85,7 @@ puts 'Fundings done!'
 # Add 5 bookmarks
 puts 'Generating bookmarks...'
 User.where(role: 'investor').each do |investor|
-  rounds = (1..Project.count).to_a.sample
+  rounds = rand(1..Project.count)
   for i in (1..rounds).to_a do
     Bookmark.create!(
       investor_id: investor.id,
