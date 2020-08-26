@@ -3,7 +3,7 @@ class FundingsController < ApplicationController
     @funding = Funding.new(funding_params)
     @funding.investor = current_user
     @funding.project_id = params[:project_id]
-
+    @funding.funding_shares = @funding.project.total_funding/@funding.funding_amount
     if @funding.save
       redirect_to project_fundings_path, :notice => 'Offer sent!'
     else
@@ -18,6 +18,6 @@ class FundingsController < ApplicationController
   private
 
   def funding_params
-    params.require(:funding).permit(:funding_amount, :funding_shares)
+    params.require(:funding).permit(:funding_amount)
   end
 end
