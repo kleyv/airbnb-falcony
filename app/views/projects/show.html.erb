@@ -6,3 +6,15 @@
   Total funding: <%= @project.total_funding %><br>
   Total shares: <%= @project.total_shares %><br>
   Category: <%= @project.category %>
+
+
+
+<div class="gap-150"></div>
+<div class="container">
+  <%= simple_form_for [ @project, @funding] do |f| %>
+    <%= f.input :funding_amount %>
+    <%= f.input :funding_shares %>
+    <%= f.button :submit %>
+  <%end %>
+
+</div>
