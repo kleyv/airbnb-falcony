@@ -1,44 +1,53 @@
-<h1><%= @project.name %> (id: <%= @project.id %>)</h1>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-8 project-list">
 
-  Full name: <%= @project.owner[:first_name] + " " + @project.owner[:last_name] %><br>
-  Username: <%= @project.owner[:username] %><br>
-  Role: <%= @project.owner[:role] %><br>
-  Total funding: <%= @project.total_funding %><br>
-  Total shares: <%= @project.total_shares %><br>
-  Category: <%= @project.category %>
+      <h1><%= @project.name %></h1>
 
-
-<!-- checks if user is investor and gives him the option to insert offer -->
-<% if current_user.role == 'investor' %>
-  <div class="gap-150"></div>
-  <div class="container">
-    <%= simple_form_for [ @project, @funding] do |f| %>
-      <%= f.input :funding_amount %>
-      <%= f.button :submit %>
-    <%end %>
-  </div>
-<% end %>
-
-<!-- checks if user is owner and only shows funding offers to them not to investors -->
-<% if current_user.role == 'owner' %>
-  <div class="gap-150"></div>
-  <div class="container">
-    <ul>
-      <% @fundings.each do |funding| %>
+      <ul>
         <li>
-          Investor: <%= funding.investor.first_name %>
-          <%= funding.investor.last_name %>
-          Offered funding: <%= funding.funding_amount %>
-          Shares to give away: <%= funding.funding_shares %>
-          <% if funding.accepted? %>
-            Accepted
-          <% else %>
-            Accept offer: <%= link_to accept_project_path(@project, funding: funding), method: :post do %>
-              <i class="far fa-square"></i>
-            <% end %>
-          <% end %>
+          Full name: <%= @project.owner[:first_name] + " " + @project.owner[:last_name] %><br>
+          Username: <%= @project.owner[:username] %><br>
+          Role: <%= @project.owner[:role] %><br>
+          Total funding: <%= @project.total_funding %><br>
+          Total shares: <%= @project.total_shares %><br>
+          Category: <%= @project.category %>
         </li>
-      <% end %>
-    </ul>
+      </ul>
+
+    <!-- checks if user is investor and gives him the option to insert offer -->
+    <% if current_user.role == 'investor' %>
+      <div class="gap-150"></div>
+      <div class="container">
+        <%= simple_form_for [ @project, @funding] do |f| %>
+          <%= f.input :funding_amount %>
+          <%= f.button :submit %>
+        <%end %>
+      </div>
+    <% end %>
+
+    <!-- checks if user is owner and only shows funding offers to them not to investors -->
+    <% if current_user.role == 'owner' %>
+      <div class="gap-100"></div>
+        <ul>
+          <% @fundings.each do |funding| %>
+            <li>
+              Investor: <%= funding.investor.first_name %>
+              <%= funding.investor.last_name %>
+              Offered funding: <%= funding.funding_amount %>
+              Shares to give away: <%= funding.funding_shares %>
+              <% if funding.accepted? %>
+                Accepted
+              <% else %>
+                Accept offer: <%= link_to accept_project_path(@project, funding: funding), method: :post do %>
+                  <i class="far fa-square"></i>
+                <% end %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+    <% end %>
+
+    </div>
   </div>
-<% end %>
+</div>
