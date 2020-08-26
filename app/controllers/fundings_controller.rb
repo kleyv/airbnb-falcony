@@ -5,7 +5,7 @@ class FundingsController < ApplicationController
     @funding.project_id = params[:project_id]
     @funding.funding_shares = @funding.project.total_funding/@funding.funding_amount
     if @funding.save
-      redirect_to project_fundings_path, :notice => 'Offer sent!'
+      redirect_to project_fundings_path(params[:project_id]), :notice => 'Offer sent!'
     else
       render "projects/show"
     end

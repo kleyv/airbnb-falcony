@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     @project.owner_id = current_user.id
+    @project.total_shares = rand(1..100)
     if @project.save
       redirect_to projects_path
     else
@@ -39,7 +40,7 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def edit  
+  def edit
   end
 
   def update

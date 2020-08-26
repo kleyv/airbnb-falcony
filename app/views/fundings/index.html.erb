@@ -1,9 +1,15 @@
-<h1>My fundings</h1>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-8 project-list">
+      <h1>My fundings</h1>
 
-<% @fundings.each do |funding| %>
-  <div class="d-flex justify-content-around">
-    <p> <%= funding.project.name %> </p>
-    <p> <%= funding.funding_amount %> </p>
-    <p> <%= funding.funding_shares %> </p>
+      <% @fundings.each do |funding| %>
+        <div class="d-flex justify-content-around">
+          <p> <%= funding.project.name %> </p>
+          <p> <%= funding.funding_amount %> </p>
+          <p> <%= funding.funding_shares %> </p>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
