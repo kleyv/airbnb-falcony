@@ -7,5 +7,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+    @funding = Funding.new()
   end
+
 end
