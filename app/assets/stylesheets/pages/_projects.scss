@@ -1,0 +1,17 @@
+.project-list {
+  margin: 32px 0;
+  padding: 16px 16px;
+  border: 1px rgb(220,220,220) solid;
+  box-shadow: 0 0 4px rgb(200,200,200);
+  h1 {
+    margin-top: 16px;
+    text-align: center;
+    font-weight: bold;
+  }
+  li {
+    list-style: none;
+  }
+  ul {
+    padding: 16px 32px;
+  }
+}

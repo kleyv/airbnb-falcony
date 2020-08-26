@@ -1,16 +1,22 @@
-<h1>All Projects</h1>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-md-8 project-list">
+      <h1>All Projects</h1>
 
-<ul>
-  <% @projects.each do |project|%>
-    <li> <!-- style="list-style-type: none" -->
-      Project: <%= link_to project.name, project_path(project) %> (id: <%= project.id %>)<br>
-      Full name: <%= project.owner[:first_name] + " " + project.owner[:last_name] %><br>
-      Username: <%= project.owner[:username] %><br>
-      Role: <%= project.owner[:role] %><br>
-      Total funding: <%= project.total_funding %><br>
-      Total shares: <%= project.total_shares %><br>
-      Category: <%= project.category %>
-      <hr>
-    </li>
-  <% end %>
-</ul>
+      <ul>
+        <% @projects.each do |project|%>
+          <li> <!-- style="list-style-type: none" -->
+            Project: <%= link_to project.name, project_path(project) %> (id: <%= project.id %>)<br>
+            Full name: <%= project.owner[:first_name] + " " + project.owner[:last_name] %><br>
+            Username: <%= project.owner[:username] %><br>
+            Role: <%= project.owner[:role] %><br>
+            Total funding: <%= project.total_funding %><br>
+            Total shares: <%= project.total_shares %><br>
+            Category: <%= project.category %>
+            <hr>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
