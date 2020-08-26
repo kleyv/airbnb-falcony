@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1>Create a new project</h1>
+
+      <%= simple_form_for @project do |f| %>
+        <%= f.input :name %>
+        <%= f.input :total_funding %>
+        <%= f.input :total_shares %>
+        <%= f.input :open? %>
+        <%= f.input :category %>
+		<%= f.button :submit, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
