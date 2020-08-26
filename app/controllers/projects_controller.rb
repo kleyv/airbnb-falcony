@@ -1,7 +1,15 @@
 class ProjectsController < ApplicationController
-  # skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: :index
   before_action :set_project, only: [:show]
 
+  def index
+    @projects = Project.all
+  end
+  
+  def personal
+    @projects = Project.all
+    @owner_projects = @projects.where(owner_id: current_user.id)
+  end
 
   def new
    @project = Project.new
@@ -16,11 +24,7 @@ class ProjectsController < ApplicationController
       render :new
     end
   end
-
-  def index
-    @projects = Project.all
-  end
-
+ 
   def show
     @project = Project.find(params[:id])
     @funding = Funding.new()

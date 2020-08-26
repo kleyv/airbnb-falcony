@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
   resources :projects, only: [ :new, :create, :index, :show ]  do
+    collection do
+      get :personal
+    end
     resources :fundings, only: [ :create , :index]
   end
 end

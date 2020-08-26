@@ -1,7 +1,7 @@
-<h1>All Projects</h1>
+<h1>My Projects</h1>
 
 <ul>
-  <% @projects.each do |project|%>
+  <% @owner_projects.each do |project|%>
     <li> <!-- style="list-style-type: none" -->
       Project: <%= link_to project.name, project_path(project) %> (id: <%= project.id %>)<br>
       Full name: <%= project.owner[:first_name] + " " + project.owner[:last_name] %><br>
