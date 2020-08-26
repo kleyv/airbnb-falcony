@@ -52,13 +52,14 @@ puts 'Owners done!'
 # Add several projects for each owner
 puts 'Generating projects...'
 User.where(role: 'owner').each do
-  rand(1..4).times do
+  rounds = rand(1..4)
+  rounds.times do
     Project.create!(
-      name: "#{Faker::Movies::HarryPotter.spell} #{Faker::Food.fruits}",
+      name: "#{Faker::Movies::HarryPotter.spell} #{Faker::Food.fruits} #{('A'..'Z').to_a.sample(3).join}",
       total_funding: (50..10_000).to_a.sample,
       total_shares: (1..100).to_a.sample,
       open?: [true, false].sample,
-      category: %w( health finance nature technology).sample,
+      category: ["Eliminate Poverty", "Erase Hunger", "Establish Good Health and Well-Being", "Provide Quality Education", "Enforce Gender Equality", "Improve Clean Water and Sanitation", "Grow Affordable and Clean Energy", "Create Decent Work and Economic Growth", "Increase Industry, Innovation, and Infrastructure", "Reduce Inequality", "Mobilize Sustainable Cities and Communities", "Influence Responsible Consumption and Production", "Organize Climate Action", "Develop Life Below Water", "Advance Life On Land", "Guarantee Peace, Justice, and Strong Institutions", "Build Partnerships for the Goals"].sample,
       owner_id: User.where(role: 'owner').sample.id
     )
   end
