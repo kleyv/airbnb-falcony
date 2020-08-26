@@ -1,0 +1,9 @@
+<h1>My fundings</h1>
+
+<% @fundings.each do |funding| %>
+  <div class="d-flex justify-content-around">
+    <p> <%= funding.project.name %> </p>
+    <p> <%= funding.funding_amount %> </p>
+    <p> <%= funding.funding_shares %> </p>
+  </div>
+<% end %>
