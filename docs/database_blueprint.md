@@ -26,18 +26,19 @@ rails g model ModelName column_name:type_of_data other_model:references
    - belongs to project
   + funding
    - belongs to investor
+   - belongs to project
   + project
    - belongs to owner
    - belongs to bookmark
+   - has many fundings
 
 - Validations
- + prensence
+ + presence
  + uniqueness
 
 ```rb
 # associations
-add_many
-#complex add_many for user model with many projects
+# complex add_many for user model with many projects
 has_many :projects_as_owner, :class_name => 'Project', :foreign_key => 'owner_id', dependent: :destroy
 belongs_to
 # complex belongs_to for project belonging to a user
@@ -47,7 +48,7 @@ presence: true
 uniqueness: true
 ```
 
-3. Edit migration created by the generation of model, if needed, to specify foreign key name
+3. Edit migration created by the generation of the model, if needed, to specify foreign key name
 ```rb
 t.references :new_name_of_foreign_key_reference, null: false, foreign_key: { to_table: :table_name }
 ```
@@ -61,8 +62,8 @@ rails db:migrate
 ```rb
 rails c --sandbox
 Bookmark.new(investor_id: integer, project_id: integer)
-Funding.new(investor_id: integer, funding_share: integer, funding_amount: integer, accepted: boolean)
-Project.new(name: string, total_funding: integer, total_share: integer, status: string, category: string, owner_id: integer)
+Funding.new(investor_id: integer, funding_share: integer, funding_amount: integer, accepted?: boolean)
+Project.new(name: string, total_funding: integer, total_shares: integer, open?: boolean, category: string, owner_id: integer)
 User.new(first_name: string, last_name: string, username: string, email: string, role: string, password: string)
 ```
 - Users(id, first_name, last_name, user_name. email, role )
@@ -71,11 +72,9 @@ User.new(first_name: string, last_name: string, username: string, email: string,
   - 3, Raffaelle, Virgiani, raffoz, raffoz@gmail.com, investor
   - 4, Tiago, Palhoça, tiago, tiago@gmail.com, investor
 
-- Projects(name, total_funding, total_shares, status. category, owner_id)
+- Projects(name, total_funding, total_shares, open?. category, owner_id)
   - 1, apple, 15_000. 1000. open, technology, 2
-  - 2, kfc, 20_000, 1000, funded, food, 1
-
-stauts - pending, cancelled, funded
+  - 2, kfc, 20_000, 1000, true, food, 1
 
 ## <a name="models">Models</a>
 
@@ -133,7 +132,7 @@ class CreateFundings < ActiveRecord::Migration[6.0]
       t.references :project, null: false, foreign_key: true
       # specify name of the column in the reference so that they don't take the default value of user_id
       t.references :investor, null: false, foreign_key: { to_table: :users }
-      t.boolean :accepted
+      t.boolean :accepted?
 
       t.timestamps
     end
@@ -160,9 +159,9 @@ end
 
 ## <a name="projects">Projects</a>
 
-| id  | name  |  total_funding | total_share  | status | category  | owner_id  |
+| id  | name  |  total_funding | total_share  | open? | category  | owner_id  |
 |---|---|---|---|---|---|---|
-| 1  | falcony  | 20_000   | 1000  | funded  | technology   | 1   |
+| 1  | falcony  | 20_000   | 1000  | true  | technology   | 1   |
 
 ### Model
 ```rb
@@ -220,7 +219,7 @@ class CreateProjects < ActiveRecord::Migration[6.0]
       t.string :name
       t.integer :total_funding
       t.integer :total_share
-      t.string :status
+      t.string :open?
       t.string :category
       # specify name of the column in the reference so that they don't take the default value of user_id
       t.references :owner, null: false, foreign_key: { to_table: :users }
