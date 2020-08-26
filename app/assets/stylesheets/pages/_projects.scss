@@ -11,6 +11,9 @@
   li {
     list-style: none;
   }
+  li:last-child hr {
+    display: none;
+  }
   ul {
     padding: 16px 32px;
   }
