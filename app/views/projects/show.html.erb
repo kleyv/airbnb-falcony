@@ -8,13 +8,39 @@
   Category: <%= @project.category %>
 
 
+<!-- checks if user is investor and gives him the option to insert offer -->
+<% if current_user.role == 'investor' %>
+  <div class="gap-150"></div>
+  <div class="container">
+    <%= simple_form_for [ @project, @funding] do |f| %>
+      <%= f.input :funding_amount %>
+      <%= f.button :submit %>
+    <%end %>
+  </div>
+<% end %>
 
-<div class="gap-150"></div>
-<div class="container">
-  <%= simple_form_for [ @project, @funding] do |f| %>
-    <%= f.input :funding_amount %>
-    <%= f.input :funding_shares %>
-    <%= f.button :submit %>
-  <%end %>
+<!-- checks if user is owner and only shows funding offers to them not to investors -->
+<% if current_user.role == 'owner' %>
+  <div class="gap-150"></div>
+  <div class="container">
+    <ul>
+      <% @fundings.each do |funding| %>
+        <li>
+          Investor: <%= funding.investor.first_name %>
+          <%= funding.investor.last_name %>
+          Offered funding: <%= funding.funding_amount %>
+          Shares to give away: <%= funding.funding_shares %>
+          <% if funding.accepted? %>
+            Accepted
+          <% else %>
+            Accept offer: <%= link_to accept_project_path(@project, funding: funding), method: :post do %>
+              <i class="far fa-square"></i>
+            <% end %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
-</div>
+<!-- @project.owner[:role] -->

@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
   def index
     @projects = Project.all
   end
-  
+
   def personal
     @projects = Project.all
     @owner_projects = @projects.where(owner_id: current_user.id)
@@ -24,10 +24,20 @@ class ProjectsController < ApplicationController
       render :new
     end
   end
- 
+
   def show
     @project = Project.find(params[:id])
     @funding = Funding.new()
+    @fundings = Funding.all.where(project_id: @project.id)
+  end
+
+  def accept
+    @project = Project.find(params[:id])
+    @funding = Funding.find(params[:funding])
+    @funding.accepted = true
+    if @funding.save
+      redirect_to project_path(@project)
+    end
   end
 
   private

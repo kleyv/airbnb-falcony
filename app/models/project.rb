@@ -5,6 +5,11 @@ class Project < ApplicationRecord
 
   validates :name, :category, :total_funding, :total_shares, :owner_id, presence: true
   validates :name, uniqueness: true
+
+
+  def open?
+    open
+  end
 end
 
 # :foreign_key => 'owner_id', :class_name => 'User'

@@ -56,7 +56,7 @@ User.where(role: 'owner').each do
     name: "#{Faker::Movies::HarryPotter.spell} #{Faker::Food.fruits}",
     total_funding: (50..10_000).to_a.sample,
     total_shares: (5..100).to_a.sample,
-    open?: [true, false].sample,
+    open: [true, false].sample,
     category: %w( health finance nature technology).sample,
     owner_id: User.where(role: 'owner').sample.id
   )
@@ -71,7 +71,7 @@ User.where(role: 'investor').each do
     funding_shares: (5..100).to_a.sample,
     project_id: Project.all.sample.id,
     investor_id: User.where(role: 'investor').sample.id,
-    accepted?: [true, false].sample
+    accepted: [true, false].sample
     )
 end
 puts 'Fundings done!'

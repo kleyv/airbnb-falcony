@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     collection do
       get :personal
     end
+    member do
+      post :accept
+    end
     resources :fundings, only: [ :create , :index]
   end
 end
