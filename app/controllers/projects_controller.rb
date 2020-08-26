@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
-  before_action :set_project, only: [:show]
+  before_action :set_project, only: [:show, :edit, :update]
 
   def index
     @projects = Project.all
@@ -26,7 +26,6 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
     @funding = Funding.new()
     @fundings = Funding.all.where(project_id: @project.id)
   end
@@ -40,10 +39,19 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def edit  
+  end
+
+  def update
+    @project.update(project_params)
+    redirect_to project_path(@project)
+  end
+
+
   private
 
   def project_params
-    params.require(:project).permit(:name, :total_shares, :open?, :total_funding, :category, :owner_id)
+    params.require(:project).permit(:name, :total_shares, :total_funding, :category, :owner_id)
   end
 
   def set_project
