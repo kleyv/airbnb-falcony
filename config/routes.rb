@@ -13,4 +13,5 @@ Rails.application.routes.draw do
     resources :fundings, only: [ :create , :index]
   end
   resources :bookmarks, only: [ :destroy ]
+  get '/fundings', to: 'fundings#index'
 end
