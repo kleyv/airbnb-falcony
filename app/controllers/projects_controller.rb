@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
-  before_action :set_project, only: [:show, :edit, :update]
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
     if params["search"] && params["search"]["categories"]
@@ -53,11 +53,15 @@ class ProjectsController < ApplicationController
     redirect_to project_path(@project)
   end
 
+  def destroy
+    @project.destroy
+    redirect_to projects_path
+  end
 
   private
 
   def project_params
-    params.require(:project).permit(:name, :total_shares, :total_funding, :category, :owner_id)
+    params.require(:project).permit(:name, :description, :total_shares, :total_funding, :category, :owner_id, :photo)
   end
 
   def set_project

@@ -12,8 +12,23 @@
             Role: <%= project.owner[:role] %><br>
             Total funding: <%= project.total_funding %><br>
             Total shares: <%= project.total_shares %><br>
-            Category: <%= project.category %>
-            <hr>
+            Category: <%= project.category %><br>
+
+            <span>
+              <%= link_to edit_project_path(project) do %>
+                <i class="far fa-edit"></i>
+                <% end %>
+            </span>
+            <span>
+              <%= link_to project_path(project),
+                method: :delete,
+                data: { confirm: "Are you sure?" } do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
+            </span>
+
+           <hr>
+
           </li>
         <% end %>
       </ul>

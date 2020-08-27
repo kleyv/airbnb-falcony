@@ -4,8 +4,10 @@
       <h1>Create a new project</h1>
       <%= simple_form_for @project do |f| %>
         <%= f.input :name %>
+        <%= f.input :description %>
         <%= f.input :total_funding, label: 'Funding Goal' %>
         <%= f.input :category, collection: Project.categories %>
+        <%= f.input :photo, as: :file %>
 		    <%= f.button :submit, class: 'btn btn-primary' %>
       <% end %>
     </div>

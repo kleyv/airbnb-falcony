@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: 'pages#home'
-  resources :projects, only: [ :new, :create, :index, :show, :edit, :update ]  do
+  resources :projects do
     collection do
       get :personal
     end
@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     end
     resources :fundings, only: [ :create , :index]
   end
+  get '/fundings', to: 'fundings#index'
 end
