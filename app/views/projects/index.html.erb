@@ -1,7 +1,20 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
+    
     <div class="col-md-8 project-list">
       <h1>All Projects</h1>
+
+      <div>
+        <%= simple_form_for :search, url: projects_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+        <form class="form-inline">
+          <%= f.input :categories, collection: Project.categories %>
+          <%= f.submit "Search", class: 'btn btn-outline-success my-2 my-sm-0'%>
+        <%end%>
+        </form>
+      </div>
+
+
+
 
       <ul>
         <% @projects.each do |project|%>

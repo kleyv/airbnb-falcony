@@ -3,7 +3,12 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update]
 
   def index
+    if params["search"]["categories"]
+      @projects = Project.where(category: params["search"]["categories"])
+
+    else
     @projects = Project.all
+    end
   end
 
   def personal
@@ -50,6 +55,11 @@ class ProjectsController < ApplicationController
 
 
   private
+
+  #def find_search_params
+   # params.require(:search).permit(:categories)
+    
+  #end
 
   def project_params
     params.require(:project).permit(:name, :total_shares, :total_funding, :category, :owner_id)
