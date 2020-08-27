@@ -56,7 +56,7 @@
             <h3>Offers:</h3>
             <% @fundings.each do |funding| %>
               <div class="funding">
-                <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar-large">
+                <%= image_tag("#{rand(1..30).to_s}.jpg", :class => "avatar-large") %>
                 <div class="funding-content">
                   <p><strong>Investor:</strong> <%= funding.investor.first_name %> <%= funding.investor.last_name %></p>
                   <p><strong>Offered funding:</strong> <%= funding.funding_amount.to_s.gsub(/(?<=\d)(?=(?:\d{3})+\z)/, ' ') %> €</p>
