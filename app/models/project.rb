@@ -2,6 +2,7 @@ class Project < ApplicationRecord
   belongs_to :owner, :class_name => 'User'
   has_many :fundings, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_one_attached :photo
 
   validates :name, :category, :total_funding, :total_shares, :owner_id, presence: true
   validates :name, uniqueness: true
