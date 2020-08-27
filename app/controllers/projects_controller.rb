@@ -3,7 +3,12 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
+    if params["search"] && params["search"]["categories"]
+      @projects = Project.where(category: params["search"]["categories"])
+      session[:category] = params["search"]["categories"]
+    else
     @projects = Project.all
+    end
   end
 
   def personal
