@@ -14,6 +14,24 @@ User.destroy_all
 
 # Add 20 users
 
+# add test users
+User.create!(
+  first_name: 'owner',
+  last_name: 'owner',
+  username: 'owner',
+  email: 'owner@gmail.com',
+  role: 'owner',
+  password: 'password'
+)
+User.create!(
+  first_name: 'investor',
+  last_name: 'investor',
+  username: 'investor',
+  email: 'investor@gmail.com',
+  role: 'investor',
+  password: 'password'
+)
+
 # Add 5 investors
 puts 'Generating investors'
 5.times do
@@ -27,7 +45,7 @@ puts 'Generating investors'
     username: username,
     email: email,
     role: 'investor',
-  password: 'passwordi'
+  password: 'password'
   )
 end
 puts 'Investors done!'
@@ -45,7 +63,7 @@ puts 'Generating owners...'
     username: username,
     email: email,
     role: 'owner',
-    password: 'passwordo'
+    password: 'password'
   )
 end
 puts 'Owners done!'

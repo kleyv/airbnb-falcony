@@ -12,7 +12,7 @@ class FundingsController < ApplicationController
   end
 
   def index
-    @fundings = Funding.all.where(investor_id: current_user)
+    @fundings = Funding.all.where(investor_id: current_user.id)
   end
 
   private

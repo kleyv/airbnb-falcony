@@ -1,7 +1,21 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
+    
     <div class="col-md-8 project-list">
       <h1>All Projects</h1>
+
+      <div>
+        <%= simple_form_for :search, url: projects_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+        <form class="form-inline">
+          <%= f.input :categories, collection: Project.categories, label: false,
+           selected: session[:category] %>
+          <%= f.submit "Search", class: 'btn btn-outline-success my-2 my-sm-0'%>
+        <%end%>
+        </form>
+      </div>
+
+
+
 
       <ul>
         <% @projects.each do |project|%>
@@ -28,11 +42,27 @@
                 <% end %>
             </span>
 
+            <span>
+              <% if current_user.role == "investor" %>
+                <% unless project.bookmarked_by?(current_user.id) %>
+                  <%= link_to bookmark_project_path(project), method: :post do %>
+                      <i class="far fa-bookmark"></i>
+                  <% end %>
+                <% else %>
+                  <%  %>
+                  <%= link_to bookmark_path(project.bookmarked_id(current_user.id)), method: :delete do %>
+                      <i class="fas fa-bookmark"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </span>
+
             <hr>
 
           </li>
 
         <% end %>
+
       </ul>
 
     </div>
