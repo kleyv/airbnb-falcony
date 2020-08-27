@@ -4,9 +4,10 @@
   border: 1px rgb(220,220,220) solid;
   box-shadow: 0 0 4px rgb(200,200,200);
   h1 {
-    margin-top: 16px;
+    margin-top: 50px;
     text-align: center;
     font-weight: bold;
+    margin-bottom: 50px;
   }
   li {
     list-style: none;
@@ -17,4 +18,62 @@
   ul {
     padding: 16px 32px;
   }
+}
+.banner {
+  background-size: cover;
+  background-position: center;
+  padding: 200px 0;
+  margin-bottom: 50px;
+}
+h2 {
+  margin-top: 20px;
+}
+h3 {
+  margin-top: 20px;
+  font-size: 24px;
+}
+.icons-show {
+  float: right;
+}
+.far {
+  color: #75B1F2;
+}
+.funding {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgb(235,235,235);
+}
+.funding:last-child {
+  border-bottom: none;
+}
+.funding .funding-content {
+  flex-grow: 1;
+  padding: 0 24px;
+}
+.funding p {
+  margin: 0;
+  line-height: 1.4;
+}
+.funding small {
+  color: #999999;
+  font-weight: bold;
+}
+.funding .funding-actions {
+  opacity: 1;
+  display: flex;
+  transition: ease .3s;
+}
+.funding:hover .funding-actions {
+  opacity: 0.2;
+}
+.funding .funding-actions a {
+  color: #999999;
+  margin-left: 16px;
+  font-size: 14px;
+}
+.funding .funding-actions a:hover {
+  color: #555555;
 }
