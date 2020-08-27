@@ -9,16 +9,25 @@
       <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.1)), url('<%= cl_image_path @project.photo.key, height: 300, width: 400, crop: :fill %>')">
       </div>
       <div class="container">
-        <h2>About</h2>
+        <br>
+        <h2><strong>About</strong></h2>
+        <br>
+      </div>
+      <hr>
+      <div class="container">
+        <h3>Description:</h3>
         <p><%= @project.description %></p>
       </div>
       <div class="container">
         <h3>Project lead:</h3>
-        <p><%= @project.owner[:first_name] + " " + @project.owner[:last_name] %></p>
+        <div class="d-flex align-items-center">
+          <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar-large">
+          <p id ="project-lead-name"><%= @project.owner[:first_name] + " " + @project.owner[:last_name] %></p>
+        </div>
       </div>
       <div class="container">
         <h3>Total funding needed:</h3>
-        <p><strong><%= @project.total_funding.to_s.gsub(/(?<=\d)(?=(?:\d{3})+\z)/, ' ') %> €</strong></p>
+        <p><%= @project.total_funding.to_s.gsub(/(?<=\d)(?=(?:\d{3})+\z)/, ' ') %> €</p>
       </div>
       <div class="container">
         <h3>SDG-impact:</h3>
@@ -26,14 +35,14 @@
       </div>
 
       <!-- show investment form when investor -->
-      <div class="container">
+      <div>
         <!-- checks if user is investor and gives him the option to insert offer -->
         <% if current_user.role == 'investor' %>
-          <div class="gap-150"></div>
           <div class="container">
+            <h3>My offer:</h3>
             <%= simple_form_for [ @project, @funding] do |f| %>
-              <%= f.input :funding_amount %>
-              <%= f.button :submit %>
+              <%= f.input :funding_amount, placeholder: '1 000 €', label: 'I want to invest' %>
+              <%= f.submit 'Submit offer', class: 'btn btn-primary' %>
             <%end %>
           </div>
         <% end %>
@@ -61,7 +70,6 @@
                     <% end %>
                   <% end %>
                 </div>
-
               </div>
             <% end %>
           </div>

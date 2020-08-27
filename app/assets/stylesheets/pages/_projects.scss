@@ -26,10 +26,11 @@
   margin-bottom: 50px;
 }
 h2 {
-  margin-top: 20px;
+  margin-top: 40px;
 }
 h3 {
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 20px;
   font-size: 24px;
 }
 .icons-show {
@@ -66,14 +67,12 @@ h3 {
   display: flex;
   transition: ease .3s;
 }
-.funding:hover .funding-actions {
-  opacity: 0.2;
-}
 .funding .funding-actions a {
   color: #999999;
   margin-left: 16px;
   font-size: 14px;
 }
-.funding .funding-actions a:hover {
-  color: #555555;
+#project-lead-name {
+  margin-bottom: 0px;
+  margin-left: 20px;
 }
