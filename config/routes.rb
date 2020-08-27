@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     end
     member do
       post :accept
+      post :bookmark
     end
     resources :fundings, only: [ :create , :index]
   end
+  resources :bookmarks, only: [ :destroy ]
 end

@@ -11,6 +11,14 @@ class Project < ApplicationRecord
   def open?
     open
   end
+
+  def bookmarked_by?(investor_id)
+    self.bookmarks.where(investor_id: investor_id).any?
+  end
+
+  def bookmarked_id(investor_id)
+    self.bookmarks.find_by(investor_id: investor_id)
+  end
 end
 
 # :foreign_key => 'owner_id', :class_name => 'User'
