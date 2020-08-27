@@ -14,6 +14,14 @@ class Project < ApplicationRecord
     open
   end
 
+  def bookmarked_by?(investor_id)
+    self.bookmarks.where(investor_id: investor_id).any?
+  end
+
+  def bookmarked_id(investor_id)
+    self.bookmarks.find_by(investor_id: investor_id)
+  end
+  
   def self.categories
     CATEGORIES.sort
   end

@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
+  before_action :set_all_project, only: [:personal]
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -7,12 +8,11 @@ class ProjectsController < ApplicationController
       @projects = Project.where(category: params["search"]["categories"])
       session[:category] = params["search"]["categories"]
     else
-    @projects = Project.all
+      @projects = Project.all
     end
   end
 
   def personal
-    @projects = Project.all
     @owner_projects = @projects.where(owner_id: current_user.id)
   end
 
@@ -45,6 +45,15 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def bookmark
+    @bookmark = Bookmark.new
+    @project = Project.find(params[:id])
+    @bookmark.investor = current_user
+    @bookmark.project = @project
+    @bookmark.save
+    redirect_to projects_path, notice: 'Bookmarked!'
+  end
+
   def edit
   end
 
@@ -62,6 +71,10 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:name, :description, :total_shares, :total_funding, :category, :owner_id, :photo)
+  end
+
+  def set_all_project
+    @projects = Project.all
   end
 
   def set_project
