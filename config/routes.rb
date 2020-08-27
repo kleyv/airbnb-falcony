@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     end
     resources :fundings, only: [ :create , :index]
   end
+  get '/fundings', to: 'fundings#index'
 end
