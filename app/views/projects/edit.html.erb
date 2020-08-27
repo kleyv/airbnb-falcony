@@ -4,9 +4,11 @@
       <h1>Edit your project</h1>
       <%= simple_form_for @project do |f| %>
         <%= f.input :name %>
+        <%= f.input :description %>
         <%= f.input :total_funding, label: 'Funding Goal' %>
         <%= f.input :category, collection: ["Eliminate Poverty", "Erase Hunger", "Establish Good Health and Well-Being", "Provide Quality Education", "Enforce Gender Equality", "Improve Clean Water and Sanitation", "Grow Affordable and Clean Energy", "Create Decent Work and Economic Growth", "Increase Industry, Innovation, and Infrastructure", "Reduce Inequality", "Mobilize Sustainable Cities and Communities", "Influence Responsible Consumption and Production", "Organize Climate Action", "Develop Life Below Water", "Advance Life On Land", "Guarantee Peace, Justice, and Strong Institutions", "Build Partnerships for the Goals"] %>
-		    <%= f.button :submit, class: 'btn btn-primary' %>
+		    <%= f.input :photo, as: :file %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>

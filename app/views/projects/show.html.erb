@@ -1,8 +1,12 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-md-8 project-list">
+      <!-- Displaying the image -->
+      <!--  cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill -->
+
 
       <h1><%= @project.name %></h1>
+      <p><%= @project.description %></p>
 
       <ul>
         <li>
