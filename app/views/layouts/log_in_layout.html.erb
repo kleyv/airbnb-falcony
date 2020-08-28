@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AirbnbFalcony</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+  </head>
+  <body>
+    <div class="container-fluid body-signup">
+      <div class="row justify-content-center">
+        <div class="section1 col-md-8 ">
+      
+
+
+
+          <%= render 'shared/flashes' %>
+          <%= yield %>
+        </div>
+      </div>
+      
+    </div>
+    <div id="log-in-footer vertical-align-text-bottom mb-0 footer-signup" class="fixed-bottom">
+          <%= render 'shared/footer' %>
+    </div>
+  </body>
+</html>

@@ -1,21 +1,4 @@
-<div class="container-fluid">
-  <div class="row justify-content-center">
-
-    <div class="col-md-8 project-list">
-      <h1>All Projects</h1>
-
-      <div>
-        <%= simple_form_for :search, url: projects_path, method: "GET", html: { class: 'form-inline' }, remote: true do |f| %>
-        <form class="form-inline">
-          <%= f.input :categories, collection: Project.categories, label: false,
-           selected: session[:category] %>
-          <%= f.submit "Search", class: 'btn btn-outline-success my-2 my-sm-0'%>
-        <%end%>
-        </form>
-      </div>
-      
-      <ul>
-        <% @projects.each do |project|%>
+<% projects.each do |project|%>
 
           <li> <!-- style="list-style-type: none" -->
             Project: <%= link_to project.name, project_path(project) %> (id: <%= project.id %>)<br>
@@ -46,7 +29,8 @@
                       <i class="far fa-bookmark"></i>
                   <% end %>
                 <% else %>
-                  <%= link_to bookmark_path(project.bookmarked_id(current_user.id)), method: :delete, remote: :true do %>
+                  <%  %>
+                  <%= link_to bookmark_path(project.bookmarked_id(current_user.id)), method: :delete do %>
                       <i class="fas fa-bookmark"></i>
                   <% end %>
                 <% end %>
@@ -58,11 +42,3 @@
           </li>
 
         <% end %>
-      <ul id="projects-list">
-        
-        <%= render "listing_index", projects: @projects %>
-      </ul>
-
-    </div>
-  </div>
-</div>

@@ -14,16 +14,16 @@ body {
 }
 
 .wrapper-m {
-  height: 6vh;
+  height: 8vh;
 }
 
 .wrapper-l {
-  height: 12vh;
+  height: 16vh;
 }
 
 .banner-landing-1 {
   width: 100%;
-  height: 80vh;
+  height: 90vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -79,7 +79,8 @@ body {
   background-repeat: no-repeat;
 
   .text-landing-3 {
-    margin: 16% 0 0 0%;
+    margin: 20% 0 0 0;
+    font-weight: 900;
   }
 
   .btn-landing-3 {
@@ -95,6 +96,7 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  // margin-top: -12%;
 
   .slogan-banner-2 {
   font-size: 44px;

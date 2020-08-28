@@ -21,26 +21,42 @@
     </div>
   </div>
 
-  <div class="row wrapper-m">
+  <div class="row wrapper-l">
   </div>
 
   <div class="row justify-content-center align-items-end">
     <div class="banner-landing-3" style="background-image: url('<%= image_path "landing_page/banner-3.png"%>');">
       <div style="text-align: center;">
         <h2 class="text-landing-3" >Change the world for good</h2>
-        <%= link_to "Sign up now", new_user_registration_path, class: "btn btn-primary btn-landing-3" %>
+
+        <% if user_signed_in? && current_user.role == "owner" %>
+          <%= link_to "Have a nice day #{current_user.first_name}!", projects_path, class: "btn btn-primary btn-landing-3" %>
+        <% elsif user_signed_in? && current_user.role == "investor" %>
+          <%= link_to "Have a nice day #{current_user.first_name}!", projects_path, class: "btn btn-primary btn-landing-3" %>
+        <% else %>
+          <%= link_to "Sign up now", new_user_registration_path, class: "btn btn-primary btn-landing-3" %>
+        <% end %>
+
       </div>
     </div>
   </div>
 
-  <div class="row wrapper-m">
+  <div class="row wrapper-l">
   </div>
 
   <div class="row">
     <div class="banner-landing-2" style="background-image: linear-gradient(rgba(0,0,0, 0.1),rgba(0,0,0,0.2)), url('<%= image_path "landing_page/banner-2.jpg"%>'); ">
       <h1 class="slogan-banner-2">Find an investor<br>that fits your cause</h1>
       <h3 class="text-banner-2">Get several offers and accelerate your dealflow</h3>
-      <%= link_to "List your projects", new_user_registration_path, class: "btn btn-primary btn-landing-2 float-right" %>
+
+      <% if user_signed_in? && current_user.role == "owner" %>
+        <%= link_to "List your projects", personal_projects_path, class: "btn btn-primary btn-landing-2 float-right" %>
+      <% elsif user_signed_in? && current_user.role == "investor" %>
+        <%= link_to "List your bookmarks", projects_path, class: "btn btn-primary btn-landing-2 float-right" %>
+      <% else %>
+        <%= link_to "Join us!", new_user_registration_path, class: "btn btn-primary btn-landing-3" %>
+      <% end %>
+
     </div>
   </div>
 
