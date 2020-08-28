@@ -11,18 +11,21 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
   <body>
-    <div class="container">
-      <div class="section1 col-5">
-    
+    <div class="container-fluid body-signup">
+      <div class="row justify-content-center">
+        <div class="section1 col-md-8 cn">
+      
 
 
 
-        <%= render 'shared/flashes' %>
-        <%= yield %>
+          <%= render 'shared/flashes' %>
+          <%= yield %>
+        </div>
       </div>
-      <div>
-        <%= render 'shared/footer' %>
-      </div>
+      
+    </div>
+    <div id="log-in-footer vertical-align-text-bottom mb-0 footer-signup" class="fixed-bottom">
+          <%= render 'shared/footer' %>
     </div>
   </body>
 </html>
