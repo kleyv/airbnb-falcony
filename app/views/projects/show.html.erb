@@ -43,7 +43,7 @@
             <div id="form-div">
               <p>I want to invest:</p>
               <%= simple_form_for [ @project, @funding ], html: { class: 'form-inline' } do |f| %>
-                <%= f.input :funding_amount, placeholder: '1.000 €                                  ', label: false %>
+                <%= f.input :funding_amount, placeholder: 'Insert amount in €', label: false %>
                 <%= f.submit 'Submit offer', class: 'btn btn-primary' %>
               <%end %>
             </div>

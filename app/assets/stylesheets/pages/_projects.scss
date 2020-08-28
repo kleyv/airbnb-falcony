@@ -19,6 +19,27 @@
 //     padding: 16px 32px;
 //   }
 // }
+.bg-image-project {
+  background-image: asset-url('create.jpg');
+  height: 100vh;
+  background-size: cover;
+  // /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; // image doesn't scroll
+}
+
+.project-new {
+  background-color: #f4f4f4;
+  margin: 20vh 0;
+  padding: 32px 32px;
+  border: 1px rgb(220,220,220) solid;
+  box-shadow: 0 0 4px rgb(200,200,200);
+
+  h1 {
+    text-align: center;
+  }
+}
 
 .card-projects {
   background-size: cover;
