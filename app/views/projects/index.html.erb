@@ -35,7 +35,7 @@
       </div>
 
       <div class="icons">
-        <% if current_user.role == "owner" %>
+        <% if user_signed_in? && current_user.role == "owner" %>
           <span>
             <%= link_to edit_project_path(project) do %>
               <i class="far fa-edit"></i>
@@ -51,7 +51,7 @@
         <% end %>
 
           <span>
-            <% if current_user.role == "investor" %>
+            <% if user_signed_in? && current_user.role == "investor" %>
               <% unless project.bookmarked_by?(current_user.id) %>
                 <%= link_to bookmark_project_path(project), method: :post, remote: :true do %>
                     <i class="far fa-bookmark"></i>
