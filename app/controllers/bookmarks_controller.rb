@@ -1,6 +1,6 @@
 class BookmarksController < ApplicationController
   def index
-    @bookmarks = Bookmark.where(investor_id: current_user.id)
+    @bookmarks = Bookmark.where(investor_id: current_user.id).order(created_at: :desc)
   end
 
   def create

@@ -12,7 +12,7 @@ class FundingsController < ApplicationController
   end
 
   def index
-    @fundings = Funding.all.where(investor_id: current_user.id)
+    @fundings = Funding.all.where(investor_id: current_user.id).order(created_at: :desc)
   end
 
   private
