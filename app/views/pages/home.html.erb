@@ -4,7 +4,11 @@
     <div class="banner-landing-1" style="background-image: linear-gradient(rgba(0,0,0, 0.1),rgba(0,0,0,0.3)), url('<%= image_path "landing_page/banner-1.jpg"%>'); ">
       <h1 class="slogan-banner-1">Find investment deals with social impact</h1>
       <h3 class="text-banner-1">Get a good return while changing the world for good</h3>
-      <%= link_to "See all our projects", projects_path, class: "btn btn-primary btn-landing-1" %>
+        <% if user_signed_in? %>
+          <%= link_to "See all our projects", projects_path, class: "btn btn-primary btn-landing-1" %>
+        <% else %>
+          <%= link_to "See all our projects", new_user_registration_path, class: "btn btn-primary btn-landing-1" %>
+        <% end %>
     </div>
   </div>
 
