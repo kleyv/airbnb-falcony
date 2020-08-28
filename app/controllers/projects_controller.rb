@@ -35,6 +35,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:id])
     @funding = Funding.new()
     @fundings = Funding.all.where(project_id: @project.id)
   end
