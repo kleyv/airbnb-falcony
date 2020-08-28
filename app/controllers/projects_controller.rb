@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   def index
     if params["search"] && params["search"]["categories"] == "-------------"
       @projects = Project.all
+      session[:category] = nil
     elsif params["search"] && params["search"]["categories"]
       @projects = Project.where(category: params["search"]["categories"])
       session[:category] = params["search"]["categories"]
