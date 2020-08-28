@@ -1,0 +1,42 @@
+<div class="container-fluid bg-image">
+  <div class="row">
+
+    <div class="col-12 col-md-5 col-lg-7">
+    </div>
+
+    <div class="col-12 col-md-5 col-lg-4 justify-content-center">
+      <div class="bookmark-list">
+        <h1>My bookmarks</h1>
+        <ul>
+          <% @bookmarks.each do |bookmark| %>
+            <li>
+
+              <%= link_to bookmark_path(bookmark.project.bookmarked_id(current_user.id)), method: :delete, remote: :true do %>
+                <i class="fas fa-bookmark"></i>
+              <% end %>
+
+              <%= " " %><%= link_to bookmark.project.name, project_path(bookmark.project.id) %><br>
+
+              Total funding needed: <%= number_with_delimiter(bookmark.project.total_funding, delimiter: ".") %> €<br>
+              Owner: <%= bookmark.project.owner.first_name + " " + bookmark.project.owner.last_name %><br>
+              <hr>
+            </li>
+          <% end %>
+        </ul>
+
+          <div class="one-line">
+            <span>
+              <%= link_to "All projects", projects_path, class: "btn btn-primary" %>
+            </span>
+            <span class="dose-description-text">
+              <%= link_to "My fundings", fundings_path, class: "btn btn-primary" %>
+            </span>
+          </div>
+
+      </div>
+
+    <div class="col-12 col-md-2 col-lg-1">
+    </div>
+
+  </div>
+</div>

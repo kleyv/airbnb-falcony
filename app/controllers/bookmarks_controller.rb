@@ -1,6 +1,6 @@
 class BookmarksController < ApplicationController
   def index
-    @bookmarks = Bookmark.all.where(investor_id: current_user.id)
+    @bookmarks = Bookmark.where(investor_id: current_user.id)
   end
 
   def create
@@ -13,6 +13,6 @@ class BookmarksController < ApplicationController
   def destroy
     @bookmark = Bookmark.find(params[:id])
     @bookmark.destroy
-    redirect_to projects_path, notice: 'Bookmark cancelled'
+    redirect_back(fallback_location: root_path, notice: "Bookmark cancelled")
   end
 end
