@@ -1,36 +1,50 @@
-<div class="banner-landing-1" style="background-image: linear-gradient(rgba(0,0,0, 0.1),rgba(0,0,0,0.3)), url('<%= image_path "landing_page/banner-1.jpg"%>'); ">
-  <h1 class="slogan-banner-1">Find investment deals with social impact</h1>
-  <h3 class="text-banner-1">Get a good return while changing the world for good</h3>
-  <%= link_to "See all our projects", projects_path, class: "btn btn-primary btn-landing-1" %>
-</div>
+<div class="container-fluid">
 
-<div class="container" style="background-color: #F4F4F4">
-  <div class="gap-150"></div>
-  <div class="d-flex justify-content-between align-items-top">
-    <div id="SDG-signin">
-      <h2>Fight global climate, water scarcity and inequality crisis</h2>
-      <p>Find projects filtered by the 17 Global Sustainaible Developments Goals of the UN</p>
-    </div>
-    <div>
-      <img src="http://www.housingrightswatch.org/sites/default/files/Global-Goals-for-Sustainable-Development_0.png" alt="17 SDGs UN" id="SDG-image">
+  <div class="row">
+    <div class="banner-landing-1" style="background-image: linear-gradient(rgba(0,0,0, 0.1),rgba(0,0,0,0.3)), url('<%= image_path "landing_page/banner-1.jpg"%>'); ">
+      <h1 class="slogan-banner-1">Find investment deals with social impact</h1>
+      <h3 class="text-banner-1">Get a good return while changing the world for good</h3>
+      <%= link_to "See all our projects", projects_path, class: "btn btn-primary btn-landing-1" %>
     </div>
   </div>
-</div>
 
-<div class="banner-landing-3" style="background-image: url('<%= image_path "landing_page/banner-3.png"%>'); ">
-  <div class='container' style="text-align: center;">
-    <div class="gap-150"></div>
-    <h3>Change the world for good</h3>
-    <%= link_to "Sign up now", new_user_registration_path, class: "btn btn-primary btn-landing-2 mt-md-5" %>
+  <div class="row wrapper-l">
   </div>
-</div>
 
-<div class="banner-landing-2" style="background-image: linear-gradient(rgba(0,0,0, 0.1),rgba(0,0,0,0.2)), url('<%= image_path "landing_page/banner-2.jpg"%>'); ">
-  <div id="text-wrapper-banner-2">
-    <h1 class="slogan-banner-2">Find an investor that fits your cause</h1>
-    <h3 class="text-banner-2">Get several offers and accelerate your dealflow</h3>
-    <%= link_to "List your projects", new_user_registration_path, class: "btn btn-primary btn-landing-2" %>
+  <div class="row justify-content-around align-items-center">
+    <!-- <div class="gap-150"></div> -->
+      <div class="col-12 col-md-6" id="SDG-signin">
+        <h2>Fight global climate, water scarcity and inequality crisis</h2>
+        <p>Find projects filtered by the 17 Global Sustainaible Developments Goals of the UN</p>
+      </div>
+      <div class="col-12 col-md-6">
+        <%= image_tag "global-goals.png", id: "SDG-image" %>
+      </div>
   </div>
+
+  <div class="row wrapper-m">
+  </div>
+
+  <div class="row justify-content-center align-items-end">
+    <div class="banner-landing-3" style="background-image: url('<%= image_path "landing_page/banner-3.png"%>');">
+      <div style="text-align: center;">
+        <h2 class="text-landing-3" >Change the world for good</h2>
+        <%= link_to "Sign up now", new_user_registration_path, class: "btn btn-primary btn-landing-3" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row wrapper-m">
+  </div>
+
+  <div class="row">
+    <div class="banner-landing-2" style="background-image: linear-gradient(rgba(0,0,0, 0.1),rgba(0,0,0,0.2)), url('<%= image_path "landing_page/banner-2.jpg"%>'); ">
+      <h1 class="slogan-banner-2">Find an investor<br>that fits your cause</h1>
+      <h3 class="text-banner-2">Get several offers and accelerate your dealflow</h3>
+      <%= link_to "List your projects", new_user_registration_path, class: "btn btn-primary btn-landing-2 float-right" %>
+    </div>
+  </div>
+
 </div>
 
 <!-- erb code: number_with_delimiter(@project.total_funding, delimiter: ".")  -->
