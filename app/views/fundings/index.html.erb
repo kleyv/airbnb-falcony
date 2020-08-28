@@ -2,12 +2,14 @@
   <div class="row justify-content-center">
     <div class="col-md-8 project-list">
       <h1>My fundings</h1>
-
+        <div class="d-flex align-items-center bg-white m-1 px-3">
+          <div class="flex-grow-1 p-2"> <strong>Project</strong> </div>
+          <div class=""> <strong>Contribution</strong> </div>
+        </div>
       <% @fundings.each do |funding| %>
-        <div class="d-flex justify-content-around">
-          <p> <%= funding.project.name %> </p>
-          <p> <%= funding.funding_amount %> </p>
-          <p> <%= funding.funding_shares %> </p>
+        <div class="d-flex align-items-center bg-white m-1 px-3">
+          <div class="flex-grow-1 p-2"> <%= link_to funding.project.name, project_path(funding.project)  %> </div>
+          <div class=""> <%= funding.funding_amount %> €</div>
         </div>
       <% end %>
     </div>
