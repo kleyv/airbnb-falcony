@@ -54,7 +54,7 @@
       <% elsif user_signed_in? && current_user.role == "investor" %>
         <%= link_to "List your bookmarks", projects_path, class: "btn btn-primary btn-landing-2 float-right" %>
       <% else %>
-        <%= link_to "Join us!", new_user_registration_path, class: "btn btn-primary btn-landing-3" %>
+        <%= link_to "Join us!", new_user_registration_path, class: "btn btn-primary btn-landing-2 float-right" %>
       <% end %>
 
     </div>

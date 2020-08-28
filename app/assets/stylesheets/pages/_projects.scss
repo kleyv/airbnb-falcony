@@ -1,24 +1,82 @@
-.project-list {
-  margin: 32px 0;
-  padding: 16px 16px;
-  border: 1px rgb(220,220,220) solid;
-  box-shadow: 0 0 4px rgb(200,200,200);
-  h1 {
-    margin-top: 50px;
-    text-align: left;
-    font-weight: bold;
-    margin-bottom: 50px;
+// .project-list {
+//   margin: 32px 0;
+//   padding: 16px 16px;
+//   border: 1px rgb(220,220,220) solid;
+//   box-shadow: 0 0 4px rgb(200,200,200);
+//   h1 {
+//     margin-top: 50px;
+//     text-align: left;
+//     font-weight: bold;
+//     margin-bottom: 50px;
+//   }
+//   li {
+//     list-style: none;
+//   }
+//   li:last-child hr {
+//     display: none;
+//   }
+//   ul {
+//     padding: 16px 32px;
+//   }
+// }
+
+.card-projects {
+  background-size: cover;
+  background-position: center;
+  height: 250px;
+  opacity: 0.9;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 20px 20px;
+  padding-bottom: 16px;
+
+  color: white;
+  // font-size: 20px;
+  font-weight: bold;
+  // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 1px white;
+  a {
+    color: white;
+    text-decoration: none;
   }
-  li {
-    list-style: none;
+
+  .title {
+    font-size: 24px;
+    // margin-top: 10px;
+    text-shadow: 1px 1px 9px rgba(0,0,0,0.9);
+    opacity: 1;
   }
-  li:last-child hr {
-    display: none;
+  .owner {
+    font-size: 18px;
+    text-shadow: 1px 1px 9px rgba(0,0,0,0.9);
+    opacity: 1;
   }
-  ul {
-    padding: 16px 32px;
+  .money {
+    font-size: 16px;
+    text-shadow: 1px 1px 9px rgba(0,0,0,0.9);
+    opacity: 1;
   }
 }
+
+.icons {
+  text-align: right;
+  margin-top: -16px;
+  padding-right: 32px;
+}
+
+
+
+
+
+
+
+
+
+
 .banner {
   background-size: cover;
   background-position: center;

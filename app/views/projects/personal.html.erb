@@ -1,38 +1,72 @@
 <div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="col-md-8 project-list">
-      <h1>My Projects</h1>
 
-      <ul>
-        <% @owner_projects.each do |project|%>
-          <li> <!-- style="list-style-type: none" -->
-            Project: <%= link_to project.name, project_path(project) %> (id: <%= project.id %>)<br>
-            Full name: <%= project.owner[:first_name] + " " + project.owner[:last_name] %><br>
-            Username: <%= project.owner[:username] %><br>
-            Role: <%= project.owner[:role] %><br>
-            Total funding: <%= project.total_funding %><br>
-            Total shares: <%= project.total_shares %><br>
-            Category: <%= project.category %><br>
-
-            <span>
-              <%= link_to edit_project_path(project) do %>
-                <i class="far fa-edit"></i>
-                <% end %>
-            </span>
-            <span>
-              <%= link_to project_path(project),
-                method: :delete,
-                data: { confirm: "Are you sure?" } do %>
-                  <i class="far fa-trash-alt"></i>
-                <% end %>
-            </span>
-
-           <hr>
-
-          </li>
-        <% end %>
-      </ul>
-
-    </div>
+  <div class="row wrapper">
   </div>
+
+  <div class="row justify-content-center">
+    <%= simple_form_for :search, url: projects_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+      <form class="form-inline">
+        <%= f.input :categories, collection: Project.categories, label: false, selected: session[:category] %>
+        <%= f.submit "Search", class: 'btn btn-success mx-3'%>
+        <%end%>
+      </form>
+  </div>
+
+  <div class="row mt-5 mx-3">
+    <% @owner_projects.sort_by(&:name).each do |project| %>
+
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
+
+        <% if project.photo.attached? %>
+          <div class="card-projects" style="background-image: url(<%= cl_image_path project.photo.key %> )">
+        <% else %>
+          <div class="card-projects" style="background-image: url(https://source.unsplash.com/random)">
+        <% end %>
+
+        <span>
+          <%= link_to project.name, project_path(project), class: "title" %><br>
+        </span>
+        <span class="owner">
+          Owner: <%= project.owner.first_name + " " + project.owner.last_name %><br>
+        </span>
+        <span class="money">
+          Total funding: <%= number_with_delimiter(project.total_funding, delimiter: ".") %> €
+        </span>
+      </div>
+
+      <div class="icons">
+        <% if current_user.role == "owner" %>
+          <span>
+            <%= link_to edit_project_path(project) do %>
+              <i class="far fa-edit"></i>
+              <% end %>
+          </span>
+          <span>
+            <%= link_to project_path(project),
+              method: :delete,
+              data: { confirm: "Are you sure?" } do %>
+                <i class="far fa-trash-alt"></i>
+              <% end %>
+          </span>
+        <% end %>
+
+          <span>
+            <% if current_user.role == "investor" %>
+              <% unless project.bookmarked_by?(current_user.id) %>
+                <%= link_to bookmark_project_path(project), method: :post, remote: :true do %>
+                    <i class="far fa-bookmark"></i>
+                <% end %>
+              <% else %>
+                <%= link_to bookmark_path(project.bookmarked_id(current_user.id)), method: :delete, remote: :true do %>
+                    <i class="fas fa-bookmark"></i>
+                <% end %>
+              <% end %>
+            <% end %>
+          </span>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+
 </div>
