@@ -5,13 +5,13 @@ class ProjectsController < ApplicationController
 
   def index
     if params["search"] && params["search"]["categories"] == "-------------"
-      @projects = Project.all
+      @projects = Project.all.order(created_at: :desc)
       session[:category] = nil
     elsif params["search"] && params["search"]["categories"]
       @projects = Project.where(category: params["search"]["categories"])
       session[:category] = params["search"]["categories"]
     else
-      @projects = Project.all
+      @projects = Project.all.order(created_at: :desc)
     end
   end
 
@@ -79,7 +79,7 @@ class ProjectsController < ApplicationController
 
 
   def set_all_project
-    @projects = Project.all
+    @projects = Project.all.order(created_at: :desc)
   end
 
   def set_project
