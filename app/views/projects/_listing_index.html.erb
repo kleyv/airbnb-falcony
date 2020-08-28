@@ -23,7 +23,7 @@
             </span>
 
             <span>
-              <% if current_user.role == "investor" %>
+              <% if user_signed_in? && current_user.role == "investor" %>
                 <% unless project.bookmarked_by?(current_user.id) %>
                   <%= link_to bookmark_project_path(project), method: :post do %>
                       <i class="far fa-bookmark"></i>
