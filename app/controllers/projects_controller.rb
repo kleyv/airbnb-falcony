@@ -36,7 +36,16 @@ class ProjectsController < ApplicationController
 
   def show
     @funding = Funding.new()
-    @fundings = Funding.all.where(project_id: @project.id)
+    fundings = Funding.all.where(project_id: @project.id)
+    @fundings_a = []
+    @fundings_o = []
+    fundings.each do |funding|
+      if funding.accepted?
+        @fundings_a << funding
+      else
+        @fundings_o << funding
+      end
+    end
   end
 
   def accept
