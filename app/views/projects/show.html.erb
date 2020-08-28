@@ -52,17 +52,35 @@
       </div>
 
 
-      <div class="container">
+      <div>
         <!-- checks if user is owner and only shows funding offers to them not to investors -->
         <% if current_user.role == 'owner' %>
-          <div>
+          <div class="card-offers">
             <h3>Offers:</h3>
-            <% @fundings.each do |funding| %>
+            <% @fundings_o.each do |funding| %>
               <div class="funding">
                 <%= image_tag("#{rand(1..22).to_s}.jpg", :class => "avatar-large") %>
                 <div class="funding-content">
                   <p><strong>Investor:</strong> <%= funding.investor.first_name %> <%= funding.investor.last_name %></p>
-                  <p><strong>Offered funding:</strong> <%= funding.funding_amount.to_s.gsub(/(?<=\d)(?=(?:\d{3})+\z)/, ' ') %> €</p>
+                  <p><strong>Offered funding:</strong> <%= funding.funding_amount.to_s.gsub(/(?<=\d)(?=(?:\d{3})+\z)/, '.') %> €</p>
+                </div>
+                <div class="funding-actions">
+                  <% if funding.accepted? %>
+                    <i class="fas fa-check-square fa-2x"></i>
+                  <% else %>
+                    Accept offer: <%= link_to accept_project_path(@project, funding: funding), method: :post do %>
+                      <i class="far fa-square fa-2x"></i>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+            <% @fundings_a.each do |funding| %>
+              <div class="funding">
+                <%= image_tag("#{rand(1..22).to_s}.jpg", :class => "avatar-large") %>
+                <div class="funding-content">
+                  <p><strong>Investor:</strong> <%= funding.investor.first_name %> <%= funding.investor.last_name %></p>
+                  <p><strong>Offered funding:</strong> <%= funding.funding_amount.to_s.gsub(/(?<=\d)(?=(?:\d{3})+\z)/, '.') %> €</p>
                 </div>
                 <div class="funding-actions">
                   <% if funding.accepted? %>
