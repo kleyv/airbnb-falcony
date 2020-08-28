@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
-    
+
     <div class="col-md-8 project-list">
       <h1>All Projects</h1>
 
@@ -13,14 +13,54 @@
         <%end%>
         </form>
       </div>
+      
+      <ul>
+        <% @projects.each do |project|%>
 
+          <li> <!-- style="list-style-type: none" -->
+            Project: <%= link_to project.name, project_path(project) %> (id: <%= project.id %>)<br>
+            Full name: <%= project.owner[:first_name] + " " + project.owner[:last_name] %><br>
+            Username: <%= project.owner[:username] %><br>
+            Role: <%= project.owner[:role] %><br>
+            Total funding: <%= project.total_funding %><br>
+            Total shares: <%= project.total_shares %><br>
+            Category: <%= project.category %><br>
 
+            <span>
+              <%= link_to edit_project_path(project) do %>
+                <i class="far fa-edit"></i>
+                <% end %>
+            </span>
+            <span>
+              <%= link_to project_path(project),
+                method: :delete,
+                data: { confirm: "Are you sure?" } do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
+            </span>
 
+            <span>
+              <% if current_user.role == "investor" %>
+                <% unless project.bookmarked_by?(current_user.id) %>
+                  <%= link_to bookmark_project_path(project), method: :post do %>
+                      <i class="far fa-bookmark"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to bookmark_path(project.bookmarked_id(current_user.id)), method: :delete, remote: :true do %>
+                      <i class="fas fa-bookmark"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </span>
 
+            <hr>
+
+          </li>
+
+        <% end %>
       <ul id="projects-list">
         
-        <%= render "listing_index", projects: @projects %> 
-
+        <%= render "listing_index", projects: @projects %>
       </ul>
 
     </div>
