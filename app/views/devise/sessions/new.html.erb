@@ -1,11 +1,13 @@
-<div class="container-fluid bg-new-user">
+<div class="container-fluid bg-new-user p-0">
+  <%= render 'shared/navbar' %>
+  <div class="wrapper-m"></div>
   <div class="row justify-content-center">
-    <div class="col-md-8 project-list" style="background-color: white;">
+    <div class="col-12 col-md-5 mb-5" style="background-color: #f4f4f4;">
 
-      <h2 style="margin-bottom: 40px;">Log in</h2>
+      <h2 style="margin: 24px auto; text-align: center;">Log in</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="form-inputs">
+        <div class="form-inputs px-3">
           <%= f.input :email,
                       required: false,
                       autofocus: true,
@@ -16,12 +18,11 @@
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
         </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Log in", class: 'btn btn-primary' %>
+        <div class="form-actions buttons-one-line px-3">
+          <%= f.button :submit, "Log in", class: 'btn btn-primary mb-4' %>
+          <%= link_to "Back", :back, class: 'btn btn-primary mb-4' %>
         </div>
       <% end %>
-      <br>
-      <%= link_to "Back", :back %>
     </div>
   </div>
 </div>
