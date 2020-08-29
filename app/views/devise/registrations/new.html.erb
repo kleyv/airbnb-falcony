@@ -1,32 +1,35 @@
-<div class="container-fluid bg-new-user">
-  <div class="wrapper-l">
-
-  </div>
+<div class="container-fluid bg-new-user p-0" id="content-wrap">
+  <%= render 'shared/navbar' %>
+  <div class="wrapper-m"></div>
   <div class="row justify-content-center">
-    <div class="col-md-5" style="background-color: white;">
+    <div class="col-12 col-md-5 mb-5" style="background-color: white;">
 
-      <h2 style="margin: 40px; text-align: center;">Sign up</h2>
+      <h2 style="margin: 24px; text-align: center;">Sign up</h2>
 
       <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= f.error_notification %>
 
-        <div class="form-inputs">
-          <%= f.input :first_name,
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "" }%>
-           <%= f.input :last_name,
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "" }%>
-           <%= f.input :username,
-                      required: true,
-                      autofocus: true,
-                      input_html: { autocomplete: "" }%>
-           <%= f.input :role,
-                      required: true,
-                      autofocus: true,
-                      collection: ["owner", "investor"] %>
+        <div class="form-inputs px-3">
+          <div class="buttons-one-line">
+            <%= f.input :first_name,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "" }%>
+            <%= f.input :last_name,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "" }%>
+          </div>
+          <div class="buttons-one-line">
+            <%= f.input :username,
+                        required: true,
+                        autofocus: true,
+                        input_html: { autocomplete: "" }%>
+            <%= f.input :role,
+                        required: true,
+                        autofocus: true,
+                        collection: ["owner", "investor"] %>
+          </div>
           <%= f.input :email,
                       required: true,
                       autofocus: true,
@@ -40,12 +43,11 @@
                       input_html: { autocomplete: "new-password" } %>
         </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Sign up", class: 'btn btn-primary' %>
+        <div class="form-actions buttons-one-line px-3">
+          <%= f.button :submit, "Sign up", class: 'btn btn-primary mb-4' %>
+          <%= link_to "Back", :back, class: 'btn btn-primary mb-4' %>
         </div>
       <% end %>
-      <br>
-      <%= link_to "Back", :back %>
     </div>
   </div>
 </div>

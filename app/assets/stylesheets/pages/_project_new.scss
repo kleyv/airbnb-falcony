@@ -1,7 +1,7 @@
 // CREATE A PROJECT
 .bg-image-project {
   background-image: asset-url('create.jpg');
-  height: 100vh;
+  min-height: 100vh;
   background-size: cover;
   // /* Center and scale the image nicely */
   background-position: center;

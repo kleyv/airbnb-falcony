@@ -1,13 +1,20 @@
 .bg-new-user {
   /* The image used */
-  background-image: linear-gradient(to bottom, rgba(245, 246, 252, 0.32), rgba(200, 200, 150, 0.73)), url("https://images.unsplash.com/photo-1590129644273-cc4c0620b320?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60");
+  background-image: url("https://images.unsplash.com/photo-1590129644273-cc4c0620b320?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60");
 
   /* Full height */
-  height: 100vh;
+  min-height: 100vh;
+  // position: relative;
 
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed; // image doesn't scroll
+}
+
+.buttons-one-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

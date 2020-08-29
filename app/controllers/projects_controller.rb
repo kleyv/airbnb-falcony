@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params["search"] && params["search"]["categories"] == "-------------"
+    if params["search"] && params["search"]["categories"] == " All"
       @projects = Project.all.order(created_at: :desc)
       session[:category] = nil
     elsif params["search"] && params["search"]["categories"]
