@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  CATEGORIES = ["-------------", "Eliminate Poverty", "Erase Hunger", "Establish Good Health and Well-Being", "Provide Quality Education", "Enforce Gender Equality", "Improve Clean Water and Sanitation", "Grow Affordable and Clean Energy", "Create Decent Work and Economic Growth", "Increase Industry, Innovation, and Infrastructure", "Reduce Inequality", "Mobilize Sustainable Cities and Communities", "Influence Responsible Consumption and Production", "Organize Climate Action", "Develop Life Below Water", "Advance Life On Land", "Guarantee Peace, Justice, and Strong Institutions", "Build Partnerships for the Goals"] 
+  CATEGORIES = ["-------------", "Eliminate Poverty", "Erase Hunger", "Establish Good Health and Well-Being", "Provide Quality Education", "Enforce Gender Equality", "Improve Clean Water and Sanitation", "Grow Affordable and Clean Energy", "Create Decent Work and Economic Growth", "Increase Industry, Innovation, and Infrastructure", "Reduce Inequality", "Mobilize Sustainable Cities and Communities", "Influence Responsible Consumption and Production", "Organize Climate Action", "Develop Life Below Water", "Advance Life On Land", "Guarantee Peace, Justice, and Strong Institutions", "Build Partnerships for the Goals"]
 
   belongs_to :owner, :class_name => 'User'
   has_many :fundings, dependent: :destroy
@@ -21,7 +21,7 @@ class Project < ApplicationRecord
   def bookmarked_id(investor_id)
     self.bookmarks.find_by(investor_id: investor_id)
   end
-  
+
   def self.categories
     CATEGORIES.sort
   end
