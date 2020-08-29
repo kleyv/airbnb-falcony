@@ -1,17 +1,46 @@
-<div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="col-md-8 project-list">
-      <h1>My fundings</h1>
-        <div class="d-flex align-items-center bg-white m-1 px-3">
-          <div class="flex-grow-1 p-2"> <strong>Project</strong> </div>
-          <div class=""> <strong>Contribution</strong> </div>
-        </div>
-      <% @fundings.each do |funding| %>
-        <div class="d-flex align-items-center bg-white m-1 px-3">
-          <div class="flex-grow-1 p-2"> <%= link_to funding.project.name, project_path(funding.project)  %> </div>
-          <div class=""> <%= funding.funding_amount %> €</div>
-        </div>
-      <% end %>
+<div class="container-fluid bg-image-fundings">
+  <div class="row">
+
+    <div class="col-12 col-md-5 col-lg-6">
     </div>
+
+    <div class="col-12 col-md-5 col-lg-4 justify-content-center">
+      <div class="funding-list">
+
+        <h1>My fundings</h1>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Project</th>
+              <th scope="col">Contribution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @fundings.each_with_index do |funding, index| %>
+            <tr>
+              <th scope="row"><%= index + 1 %></th>
+              <td><%= link_to funding.project.name, project_path(funding.project) %></td>
+              <td><%= funding.funding_amount %> €</td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+          <div class="one-line">
+            <span>
+              <%= link_to "All projects", projects_path, class: "btn btn-primary" %>
+            </span>
+            <span class="dose-description-text">
+              <%= link_to "My bookmarks", bookmarks_path, class: "btn btn-primary" %>
+            </span>
+          </div>
+
+      </div>
+
+    <div class="col-12 col-md-2 col-lg-2">
+    </div>
+
   </div>
 </div>

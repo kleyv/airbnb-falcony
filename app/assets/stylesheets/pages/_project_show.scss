@@ -1,0 +1,73 @@
+// PHOTO AND DESCRIPTION
+
+.project-show-container {
+  margin: 12vh 0;
+  border: 2px rgb(220,220,220) solid;
+  box-shadow: 0 0 2px rgb(200,200,200);
+  h1 {
+    font-weight: 700;
+  }
+}
+
+
+.card-description {
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  // padding: 40px;
+
+  img {
+  width: 200px;
+  border-radius: 5px;
+  // object-fit: cover;
+  }
+  span {
+  opacity: 0.7;
+  }
+}
+
+
+// SECOND BLOCK
+.card-attributes {
+  // padding: 30px 40px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+
+// THIRD BLOCK
+// INVESTOR OFFER
+.card-offer {
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  // padding: 40px 58px;
+}
+
+
+// THIRD BLOCK
+// OFFERS RECEIVED BY OWNER
+.card-offers {
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+.funding:last-child {
+  border-bottom: none;
+}
+
+// .banner {
+//   background-size: cover;
+//   background-position: center;
+//   padding: 200px 0;
+//   margin-bottom: 50px;
+// }
+
+
+// .far {
+//   color: #75B1F2;
+// }
+
+.icons-show {
+  float: right;
+  a {
+  text-decoration: none;
+  }
+}

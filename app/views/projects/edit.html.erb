@@ -1,16 +1,26 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
+<div class="container-fluid bg-image-project">
+
+  <div class="row">
+
+    <div class="col-12 col-md-5 col-lg-6">
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4 project-new">
       <h1>Edit your project</h1>
       <%= simple_form_for @project do |f| %>
         <%= f.input :name %>
         <%= f.input :description %>
         <%= f.input :total_funding, label: 'Funding Goal' %>
-        <%= f.input :category, collection: ["Eliminate Poverty", "Erase Hunger", "Establish Good Health and Well-Being", "Provide Quality Education", "Enforce Gender Equality", "Improve Clean Water and Sanitation", "Grow Affordable and Clean Energy", "Create Decent Work and Economic Growth", "Increase Industry, Innovation, and Infrastructure", "Reduce Inequality", "Mobilize Sustainable Cities and Communities", "Influence Responsible Consumption and Production", "Organize Climate Action", "Develop Life Below Water", "Advance Life On Land", "Guarantee Peace, Justice, and Strong Institutions", "Build Partnerships for the Goals"] %>
-		    <%= f.input :photo, as: :file %>
+        <%= f.input :category, collection: Project.categories %>
+        <%= f.input :photo, as: :file %>
         <%= f.button :submit, class: 'btn btn-primary' %>
       <% end %>
     </div>
+
+    <div class="col-12 col-md-2 col-lg-2">
+    </div>
+
   </div>
 </div>
+
 
