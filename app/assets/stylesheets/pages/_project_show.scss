@@ -2,9 +2,9 @@
 
 .project-show-container {
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  margin: 12vh 0;
-  border: 2px rgb(220,220,220) solid;
-  box-shadow: 0 0 2px rgb(200,200,200);
+  margin: 5vh 0;
+  border: 1px rgb(220,220,220) solid;
+  box-shadow: 0 0 1px rgb(200,200,200);
   h1 {
     font-weight: 700;
   }
@@ -13,12 +13,15 @@
 
 .card-description {
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
   // padding: 40px;
 
   img {
-  width: 200px;
+  max-width: 100%;
+  height: auto;
+  // It resizes automatically
   border-radius: 5px;
+  background-size: contain;
   // object-fit: cover;
   }
   span {
@@ -31,7 +34,7 @@
 .card-attributes {
   // padding: 30px 40px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
 }
 
 
@@ -39,7 +42,7 @@
 // INVESTOR OFFER
 .card-offer {
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
   // padding: 40px 58px;
 }
 
