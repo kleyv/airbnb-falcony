@@ -1,120 +1,179 @@
 <div class="container-fluid">
-  <div class="row justify-content-center">
-    <div class="col-md-8 project-list" style="background-color: white;">
-      <!-- Displaying the image -->
-      <!--  cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill -->
+
+  <div class="row justify-content-around">
+
+    <div class="col-md-7 project-show-container px-5" style="background-color: white;">
+
+      <!-- NAME OF THE PROJECT -->
+      <h1 class="text-center my-5"><%= @project.name %></h1>
 
 
-      <h1><%= @project.name %></h1>
-      <div class="card-description">
-        <img src="<%= cl_image_path @project.photo.key, crop: :fill %>" />
-        <div class="card-description-infos">
-          <h3>Description</h3>
-          <p><%= @project.description %></p>
+      <!-- FIRST BLOCK -->
+      <div class="container mb-5">
+        <div class="row card-description">
+
+          <div class="col-12 col-md-4 d-flex justify-content-center p-4">
+            <% if @project.photo.attached? %>
+              <%= cl_image_tag @project.photo.key, crop: :fill %>
+            <% else %>
+              <%= image_tag "https://source.unsplash.com/random" %>
+            <% end %>
+          </div>
+
+          <div class="col-12 col-md-8 d-flex align-items-center pr-4">
+            <span><%= @project.description %></span>
+          </div>
+
         </div>
       </div>
-      <br>
-      <br>
-      <div class="card-attributes d-flex justify-content-between">
-        <div class="container">
-          <h3>Project lead</h3>
-          <div class="d-flex align-items-top">
-            <img src="https://kitt.lewagon.com/placeholder/users/random" class="avatar-large">
-            <p id ="project-lead-name"><%= @project.owner[:first_name] + " " + @project.owner[:last_name] %></p>
+
+
+      <!-- SECOND BLOCK -->
+      <div class="container card-attributes p-4">
+
+        <div class="row">
+          <div class="col">
+            <h3>Project lead</h3>
+          </div>
+          <div class="col">
+            <h3>Funding goal</h3>
+          </div>
+          <div class="col">
+            <h3>Impact area</h3>
           </div>
         </div>
-        <div class="container">
-          <h3>Funding goal</h3>
-          <p><%= @project.total_funding.to_s.gsub(/(?<=\d)(?=(?:\d{3})+\z)/, '.') %> €</p>
+
+        <div class="row">
+          <div class="col d-flex justify-content-start align-items-center">
+            <img class="avatar-large mr-3" src="https://kitt.lewagon.com/placeholder/users/random">
+            <span><%= @project.owner[:first_name] + " " + @project.owner[:last_name] %></span>
+          </div>
+
+          <div class="col d-flex align-items-center">
+            <span><%= number_with_delimiter(@project.total_funding, delimiter: ".") %> €</span>
+          </div>
+
+          <div class="col d-flex align-items-center">
+            <span><%= @project.category %></span>
+          </div>
         </div>
-        <div class="container">
-          <h3>Impact area</h3>
-          <p><%= @project.category %></p>
-        </div>
+
       </div>
-      <br>
-      <br>
-      <!-- show investment form when investor -->
-      <div>
-        <!-- checks if user is investor and gives him the option to insert offer -->
-        <% if current_user.role == 'investor' %>
-          <div class="container card-offer d-flex justify-content-between align-items-center">
-            <div id="my-offer"><h3>My offer:</h3></div>
-            <div id="form-div">
-              <p>I want to invest:</p>
-              <%= simple_form_for [ @project, @funding ], html: { class: 'form-inline' } do |f| %>
-                <%= f.input :funding_amount, placeholder: 'Insert amount in €', label: false %>
-                <%= f.submit 'Submit offer', class: 'btn btn-primary' %>
-              <%end %>
+
+      <!-- THIRD BLOCK -->
+      <!-- show investment form when INVESTOR -->
+      <!-- checks if user is investor and gives him the option to insert offer -->
+      <% if current_user.role == "investor" %>
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col d-flex card-offer justify-content-between align-items-center p-4">
+
+              <div>
+                <h3>My offer</h3>
+              </div>
+
+              <div>
+                <%= simple_form_for [ @project, @funding ], html: { class: 'form-inline' } do |f| %>
+                  <%= f.input :funding_amount, placeholder: 'Insert amount in €', label: false %>
+                  <%= f.submit "Let's go", class: 'btn btn-primary mx-3' %>
+                <%end %>
+              </div>
+
             </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 
 
-      <div>
-        <!-- checks if user is owner and only shows funding offers to them not to investors -->
-        <% if current_user.role == 'owner' %>
-          <div class="card-offers">
-            <h3>Offers:</h3>
-            <% @fundings_o.each do |funding| %>
-              <div class="funding">
-                <%= image_tag("#{rand(1..22).to_s}.jpg", :class => "avatar-large") %>
-                <div class="funding-content">
-                  <p><strong>Investor:</strong> <%= funding.investor.first_name %> <%= funding.investor.last_name %></p>
-                  <p><strong>Offered funding:</strong> <%= funding.funding_amount.to_s.gsub(/(?<=\d)(?=(?:\d{3})+\z)/, '.') %> €</p>
-                </div>
-                <div class="funding-actions">
-                  <% if funding.accepted? %>
-                    <i class="fas fa-check-square fa-2x"></i>
-                  <% else %>
-                    Accept offer: <%= link_to accept_project_path(@project, funding: funding), method: :post do %>
-                      <i class="far fa-square fa-2x"></i>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-            <% @fundings_a.each do |funding| %>
-              <div class="funding">
-                <%= image_tag("#{rand(1..22).to_s}.jpg", :class => "avatar-large") %>
-                <div class="funding-content">
-                  <p><strong>Investor:</strong> <%= funding.investor.first_name %> <%= funding.investor.last_name %></p>
-                  <p><strong>Offered funding:</strong> <%= funding.funding_amount.to_s.gsub(/(?<=\d)(?=(?:\d{3})+\z)/, '.') %> €</p>
-                </div>
-                <div class="funding-actions">
-                  <% if funding.accepted? %>
-                    <i class="fas fa-check-square fa-2x"></i>
-                  <% else %>
-                    Accept offer: <%= link_to accept_project_path(@project, funding: funding), method: :post do %>
-                      <i class="far fa-square fa-2x"></i>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
+      <!-- checks if user is OWNER and only shows funding offers to them not to investors -->
+      <% if current_user.role == 'owner' && ( !@fundings_o.empty? || !@fundings_a.empty? ) %>
+
+        <div class="container funding card-offers mt-5">
+
+          <div class="row">
+            <h3 class="pl-4 pt-4">
+              Offers
+            </h3>
           </div>
-        <% end %>
-      </div>
+
+          <% @fundings_o.each do |funding| %>
+            <div class="row">
+              <div class="col d-flex justify-content-around align-items-center px-4 mb-3">
+
+                <div>
+                  <%= image_tag("#{rand(1..22).to_s}.jpg", :class => "avatar-large mr-3") %>
+                </div>
+
+                <div class="flex-grow-1 align-items-center funding-content">
+                  <span><strong>Investor:</strong> <%= funding.investor.first_name %> <%= funding.investor.last_name %></span><br>
+                  <span><strong>Offered funding:</strong> <%= number_with_delimiter(funding.funding_amount, delimiter: ".") %> €</span>
+                </div>
+
+                <div class="d-flex align-items-center">
+                  <span>Click to accept  </span><%= link_to accept_project_path(@project, funding: funding), method: :post, remote: :true do %>
+                    <i class="far fa-square fa-2x"></i>
+                  <% end %>
+                </div>
+
+              </div>
+            </div>
+          <% end %>
+
+          <% @fundings_a.each do |funding| %>
+            <div class="row">
+              <div class="col d-flex justify-content-around align-items-center px-4 mb-3">
+
+                <div>
+                  <%= image_tag("#{rand(1..22).to_s}.jpg", :class => "avatar-large mr-3") %>
+                </div>
+
+                <div class="flex-grow-1 align-items-center funding-content">
+                  <span><strong>Investor:</strong> <%= funding.investor.first_name %> <%= funding.investor.last_name %></span><br>
+                  <span><strong>Offered funding:</strong> <%= number_with_delimiter(funding.funding_amount, delimiter: ".") %> €</span>
+                </div>
+
+                <div class="d-flex align-items-center">
+                  <span>Accepted  </span><i class="far fa-check-square fa-2x"></i>
+                </div>
+
+              </div>
+            </div>
+          <% end %>
+
+        </div>
+
+      <% end %>
 
 
 
-      <div class="icons-show mt-md-5">
-        <% if current_user.role == 'owner' %>
+      <!-- edit and delete for OWNERS -->
+      <div class="icons-show mt-5 mb-4">
+        <!-- it appears only if owner -->
+        <% if current_user.role == "owner" %>
+          <!-- edit -->
           <span>
             <%= link_to edit_project_path(@project) do %>
-              <i class="far fa-edit fa-2x"></i>
+              <i class="far fa-edit fa-lg mr-2"></i>
               <% end %>
           </span>
+          <!-- delete -->
           <span>
             <%= link_to project_path(@project),
               method: :delete,
+              remote: :true,
               data: { confirm: "Are you sure?" } do %>
-                <i class="far fa-trash-alt fa-2x"></i>
+                <i class="far fa-trash-alt fa-lg mr-2"></i>
               <% end %>
           </span>
         <% end %>
       </div>
+
+
     </div>
+    <!-- first col-md-8 -->
+
   </div>
+  <!-- row -->
+
 </div>
+<!-- container.fluid -->
